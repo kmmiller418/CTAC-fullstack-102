@@ -46,4 +46,4 @@ Person.prototype.addToFamily = function(person) {
 
 console.log(peter.addToFamily(jess));
 console.log(peter.addToFamily('string'));
-
+console.log(peter.family);
