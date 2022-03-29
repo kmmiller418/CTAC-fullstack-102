@@ -4,7 +4,7 @@ function Person (firstName, lastName, favoriteColor, favoriteNumber, favoriteFoo
     this.favoriteColor = favoriteColor;
     this.favoriteNumber = favoriteNumber;
     this.favoriteFoods = favoriteFoods;
-    this.family = [];
+    // this.family = [];
 }
 
 Person.prototype = {
@@ -14,14 +14,14 @@ Person.prototype = {
     toString: function () {
         return `${this.fullName()}, Favorite Color: ${this.favoriteColor}, Favorite Number: ${this.favoriteNumber}`
     },
-    addToFamily: function(person) {
-        if (person instanceof Person && !this.family.includes(person)){
-            this.family.push(person);
-        } else {
-            console.log('Cannot add to family, the person either does not exist or is already in the family.')
-        }
-        return this.family.length;
-    }
+    // addToFamily: function(person) {
+    //     if (person instanceof Person && !this.family.includes(person)){
+    //         this.family.push(person);
+    //     } else {
+    //         console.log('Cannot add to family, the person either does not exist or is already in the family.')
+    //     }
+    //     return this.family.length;
+    // }
 }
 
 let peter = new Person("Peter", "Oleary", "Green", 42, ['pasta', 'pizza']);
@@ -29,5 +29,21 @@ console.log(peter.fullName());
 console.log(peter.toString());
 
 let jess = new Person("Jess", "Oleary", "Yellow", 700, ['cake', 'yogurt']);
+
+
+// Added below code as alternate solution to requirement 4 + 5 where family + 
+// addToFamily method are not just added on to constructor function
+
+Person.prototype.family = [];
+Person.prototype.addToFamily = function(person) {
+    if (person instanceof Person && !this.family.includes(person)){
+        this.family.push(person);
+    } else {
+        console.log('Cannot add to family, the person either does not exist or is already in the family.')
+    }
+    return this.family.length;
+}
+
 console.log(peter.addToFamily(jess));
-// console.log(peter.addToFamily('string'));
+console.log(peter.addToFamily('string'));
+
