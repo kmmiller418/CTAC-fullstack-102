@@ -16,5 +16,5 @@ console.log(h2BeforeCurrent);
 const divOfParentOfHighlight = document.querySelector('h2.highlight').parentElement.parentElement;
 console.log(divOfParentOfHighlight);
 
-const sectionsWithH2s = document.querySelectorAll('section h2')
+const sectionsWithH2s = Array.from(document.querySelectorAll('h2')).map((el)=>el.parentElement); 
 console.log(sectionsWithH2s);
