@@ -3,7 +3,8 @@ let postButton = document.getElementById("get-posts");
 let post10Button = document.getElementById("get-post-10");
 let createButton = document.getElementById("create-post");
 let replaceButton = document.getElementById("replace-post");
-
+let updateButton = document.getElementById("update-post");
+let deleteButton = document.getElementById("delete-post");
 
 //post container
 let posts = document.getElementById("post-container");
@@ -74,6 +75,31 @@ replaceButton.addEventListener("click", () => {
   })
     .then((response) => response.json())
     .then((json) => createPost(json));
+});
+
+updateButton.addEventListener("click", () => {
+  posts.innerHTML = "";
+
+  fetch("https://jsonplaceholder.typicode.com/posts/12", {
+    method: "PATCH",
+    body: JSON.stringify({
+      title: "New title to replace the last icky one",
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => createPost(json));
+});
+
+deleteButton.addEventListener("click", () => {
+  fetch("https://jsonplaceholder.typicode.com/posts/12", {
+    method: "DELETE",
+  }).then(() => {
+    let success = document.createElement("p");
+    success.innerHTML = "Post has been successfully deleted.";
+  });
 });
 
 //moved post creation into function for DRYer code
