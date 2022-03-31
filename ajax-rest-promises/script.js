@@ -12,7 +12,6 @@ let posts = document.getElementById("post-container");
 //Event listeners:
 postButton.addEventListener("click", () => {
   posts.innerHTML = "";
-
   fetch("https://jsonplaceholder.typicode.com/posts")
     .then((response) => response.json())
     .then((json) => {
@@ -23,9 +22,9 @@ postButton.addEventListener("click", () => {
         let userId = document.createElement("p");
 
         postTitle.innerHTML = json[i].title;
-        postID.innerHTML = json[i].id;
+        postID.innerHTML = `Post ID: ${json[i].id}`;
         post.innerHTML = json[i].body;
-        userId.innerHTML = json[i].userId;
+        userId.innerHTML = `User ID: ${json[i].userId}`;
 
         posts.append(postTitle, postID, post, userId);
       }
@@ -33,16 +32,12 @@ postButton.addEventListener("click", () => {
 });
 
 post10Button.addEventListener("click", () => {
-  posts.innerHTML = "";
-
   fetch("https://jsonplaceholder.typicode.com/posts/10")
     .then((response) => response.json())
     .then((json) => createPost(json));
 });
 
 createButton.addEventListener("click", () => {
-  posts.innerHTML = "";
-
   fetch("https://jsonplaceholder.typicode.com/posts", {
     method: "POST",
     body: JSON.stringify({
@@ -59,8 +54,6 @@ createButton.addEventListener("click", () => {
 });
 
 replaceButton.addEventListener("click", () => {
-  posts.innerHTML = "";
-
   fetch("https://jsonplaceholder.typicode.com/posts/12", {
     method: "PUT",
     body: JSON.stringify({
@@ -78,8 +71,6 @@ replaceButton.addEventListener("click", () => {
 });
 
 updateButton.addEventListener("click", () => {
-  posts.innerHTML = "";
-
   fetch("https://jsonplaceholder.typicode.com/posts/12", {
     method: "PATCH",
     body: JSON.stringify({
@@ -94,16 +85,21 @@ updateButton.addEventListener("click", () => {
 });
 
 deleteButton.addEventListener("click", () => {
+  posts.innerHTML = "";
+
   fetch("https://jsonplaceholder.typicode.com/posts/12", {
     method: "DELETE",
   }).then(() => {
     let success = document.createElement("p");
     success.innerHTML = "Post has been successfully deleted.";
+    posts.append(success);
   });
 });
 
-//moved post creation into function for DRYer code
+//moved post creation into helper function
 function createPost(json) {
+  posts.innerHTML = "";
+
   let postTitle = document.createElement("h3");
   let postID = document.createElement("p");
   let post = document.createElement("p");
