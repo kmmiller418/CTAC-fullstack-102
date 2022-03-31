@@ -35,17 +35,42 @@ post10Button.addEventListener("click", () => {
   fetch("https://jsonplaceholder.typicode.com/posts/10")
     .then((response) => response.json())
     .then((json) => {
-      let post = document.createElement("p");
-      let postID = document.createElement("p");
-      let postTitle = document.createElement("p");
-      let userId = document.createElement("p");
-
-      post.innerHTML = json.body;
-      postID.innerHTML = json.id;
-      postTitle.innerHTML = json.title;
-      userId.innerHTML = json.userId;
-
-      posts.append(post, postID, postTitle, userId);
+      createPost(json);
     });
 });
 
+createButton.addEventListener("click", () => {
+  posts.innerHTML = "";
+
+  fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST",
+    body: JSON.stringify({
+      title: "foo",
+      body: "bar",
+      userId: 1,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      createPost(json);
+    });
+});
+
+
+//moved post creation into function for DRYer code
+function createPost(json) {
+  let post = document.createElement("p");
+  let postID = document.createElement("p");
+  let postTitle = document.createElement("p");
+  let userId = document.createElement("p");
+
+  post.innerHTML = json.body;
+  postID.innerHTML = json.id;
+  postTitle.innerHTML = json.title;
+  userId.innerHTML = json.userId;
+
+  posts.append(post, postID, postTitle, userId);
+}
