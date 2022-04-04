@@ -8,9 +8,10 @@ jQuery(function () {
     let required = new Array(name, email, phoneNum);
 
     for (i = 0; i < required.length; i++) {
-      let message = $("#message").html("Please Fill Out Required Fields");
+      let message = $("#message");
+      
       if (required[i].val() == "") {
-        message.addClass("warning");
+        message.html("Please Fill Out Required Fields").addClass("warning");
         required[i].prev().addClass("warning");
       }
 
