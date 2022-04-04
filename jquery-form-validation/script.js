@@ -6,9 +6,9 @@ jQuery(function () {
     let email = $("#email");
     let phoneNum = $("#phone");
     let required = new Array(name, email, phoneNum);
-    let message = $("#message").html("Please Fill Out Required Fields");
 
     for (i = 0; i < required.length; i++) {
+      let message = $("#message").html("Please Fill Out Required Fields");
       if (required[i].val() == "") {
         message.addClass("warning");
         required[i].prev().addClass("warning");
