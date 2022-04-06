@@ -1,7 +1,0 @@
-POST http://localhost:3001/api/notes
-Content-Type: application/json
-
-{
-    "content": "trying it in VS Code bc I can't get it to work in Postman",
-    "important": true
-}
