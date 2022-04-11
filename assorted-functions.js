@@ -6,8 +6,15 @@ const reverseNum = (num) => {
         newNum += number[i];
     }
 
-    return newNum;
-}
+    return (newNum[0] === '0') ? newNum : Number(newNum);
+};
 
 console.log(reverseNum(349210));
+console.log(reverseNum(349212));
+
+const alphebetizeString = (str) => {
+    return str.split('').sort().join('')
+};
+
+console.log(alphebetizeString('webmaster'));
 
