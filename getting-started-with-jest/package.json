@@ -8,6 +8,12 @@
   },
   "jest" : {
     "collectCoverage": true,
+    "collectCoverageFrom": ["./src/**"],
+    "coverageThreshold": {
+      "global": {
+        "lines": 90
+      }
+    },
     "coverageReporters": ["html"]
   },
   "keywords": [],
